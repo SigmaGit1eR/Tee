@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Перевірка пароля</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f8ff;
+    }
+    .container {
+      text-align: center;
+      border: 2px solid #4caf50;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 80%;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    .success-message {
+      color: green;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <h1>Введіть пароль</h1>
+    <input type="password" id="password" placeholder="Введіть пароль">
+    <button id="checkBtn">Перевірити</button>
+    <div class="error" id="error"></div>
+  </div>
+
+  <script>
+    // Переконайтесь, що код виконується після завантаження сторінки
+    window.onload = function() {
+      // Отримуємо кнопку і додаємо обробник події
+      const checkBtn = document.getElementById('checkBtn');
+      checkBtn.addEventListener('click', checkPassword);
+    };
+
+    function checkPassword() {
+      const correctPassword = "ABRAKADABRA";  // Правильний пароль
+      const inputPassword = document.getElementById("password").value; // Вхідний пароль
+      const errorElement = document.getElementById("error");  // Місце для повідомлення про помилку
+      const container = document.getElementById("container");  // Контейнер для змін
+
+      // Перевірка на правильність пароля
+      if (inputPassword === correctPassword) {
+        // Очищаємо повідомлення про помилку
+        errorElement.textContent = "";
+
+        // Змінюємо вміст сторінки
+        container.innerHTML = `
+          <h1>Яблука ростуть на дереві</h1>
+          <button onclick="resetPage()">Оновити</button>
+        `;
+      } else {
+        // Якщо пароль неправильний, виводимо повідомлення про помилку
+        errorElement.textContent = "Неправильний пароль!";
+      }
+    }
+
+    // Оновлення сторінки
+    function resetPage() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
